@@ -22,7 +22,7 @@ def get_tiny_images(img_paths):
     
 
     tiny_img_feats = np.zeros((len(img_paths),256))
-    for i in range(len(img_paths)):
+    for i in tqdm(range(len(img_paths))):
         image_input = Image.open(img_paths[i])
         Gauss_image = image_input.filter(ImageFilter.GaussianBlur(radius = 2))
         Resize_image=Gauss_image.resize((16, 16))
@@ -47,7 +47,7 @@ def get_tiny_images(img_paths):
 def build_vocabulary(img_paths, vocab_size=400):
     image_feats = []
     count=0
-    for path in img_paths:
+    for path in tqdm(img_paths):
         if count%3==0:
             img =np.array(Image.open(path),dtype='float32')
             frames, descriptors = dsift(img, step=[3, 3], fast=True)       
@@ -62,7 +62,7 @@ def build_vocabulary(img_paths, vocab_size=400):
 def get_bags_of_sifts(img_paths, vocab):
     img_feats = np.zeros([len(img_paths),len(vocab)])
     c=0
-    for path in img_paths:
+    for path in tqdm(img_paths):
         img =np.array(Image.open(path),dtype='float32')
         frames, descriptors = dsift(img, step=[3, 3], fast=True)    
         dist = cdist(vocab, descriptors)
@@ -85,7 +85,7 @@ def get_bags_of_sifts(img_paths, vocab):
 def nearest_neighbor_classify(train_img_feats, train_labels, test_img_feats):
     test_predicts = []
     KNN_num=4
-    for i in range(len(test_img_feats)):
+    for i in tqdm(range(len(test_img_feats))):
         d = []
         KNN=[]
         for j in range(len(train_img_feats)):
