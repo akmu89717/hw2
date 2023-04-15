@@ -26,12 +26,12 @@ def get_tiny_images(img_paths):
         image_input = Image.open(img_paths[i])
         Gauss_image = image_input.filter(ImageFilter.GaussianBlur(radius = 2))
         Resize_image=Gauss_image.resize((16, 16))
-        # resize_img=center_crop(im,(16,16))
         mean_ima=np.mean(Resize_image)
         varian_ima = np.var(Resize_image)
         normalized_ima = (Resize_image-mean_ima)/varian_ima        
-        normalized_ima=normalized_ima.reshape(1,256)
+        normalized_ima=normalized_ima.reshape(1,256)        
         tiny_img_feats[i,:]=normalized_ima
+ 
     #################################################################
     #                        END OF YOUR CODE                       #
     #################################################################

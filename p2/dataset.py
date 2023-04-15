@@ -14,8 +14,8 @@ def get_dataloader(dataset_dir, batch_size=1, split='test'):
     ###############################
     if split == 'train':
         transform = transforms.Compose([
-            transforms.RandomHorizontalFlip(p=0.3),    # half rotate 
-            transforms.ColorJitter(saturation=0.1),
+            transforms.RandomHorizontalFlip(p=0.3),     
+            transforms.ColorJitter(saturation=0.1),     
             transforms.GaussianBlur(3, sigma=(1)),
             transforms.Resize((32,32)),
             transforms.ToTensor(),

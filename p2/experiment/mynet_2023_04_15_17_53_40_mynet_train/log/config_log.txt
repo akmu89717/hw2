@@ -1,0 +1,7 @@
+Experiment Name = mynet_train
+Model Type      = mynet
+Num epochs      = 30
+Batch size      = 32
+Use adam        = SGD
+Learning rate   = 0.01
+Scheduler step  = [16, 32, 45]

@@ -3,7 +3,7 @@ import sys
 import time
 import argparse
 from datetime import datetime
-
+from tqdm import tqdm 
 import torch
 import torch.nn as nn
 import matplotlib.pyplot as plt
@@ -104,7 +104,7 @@ def train(model, train_loader, val_loader, logfile_dir, model_save_dir, criterio
     train_acc_list, val_acc_list = [], []
     best_acc = 0.0
 
-    for epoch in range(cfg.epochs):
+    for epoch in tqdm(range(cfg.epochs)):
         ##### TRAINING #####
         train_start_time = time.time()
         train_loss = 0.0
