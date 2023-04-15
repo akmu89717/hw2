@@ -1,0 +1,7 @@
+Experiment Name = resnet18_train
+Model Type      = resnet18
+Num epochs      = 15
+Batch size      = 64
+Use adam        = False
+Learning rate   = 0.01
+Scheduler step  = [16, 32, 45]
